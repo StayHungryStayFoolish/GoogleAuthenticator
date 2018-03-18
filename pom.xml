@@ -40,11 +40,12 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.10</version>
-		</dependency>
+        <!-- Google-ZXing- 生成二维码工具-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.3.0</version>
+        </dependency>
 	</dependencies>
 
 	<build>

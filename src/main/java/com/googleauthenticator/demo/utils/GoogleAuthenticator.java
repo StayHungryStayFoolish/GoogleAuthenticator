@@ -36,7 +36,7 @@ public class GoogleAuthenticator {
             byte[] bEncodedKey = codec.encode(buffer);
             String encodedKey = new String(bEncodedKey);
             return encodedKey;
-        }  catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return null;
@@ -44,6 +44,7 @@ public class GoogleAuthenticator {
 
     /**
      * 请求一个 QR 链接
+     *
      * @param user
      * @param host
      * @param secret
@@ -56,6 +57,7 @@ public class GoogleAuthenticator {
 
     /**
      * 生成一个 Google 身份验证器，该方法返回值放入二维码扫描
+     *
      * @param user
      * @param secret
      * @return
@@ -65,7 +67,15 @@ public class GoogleAuthenticator {
         return String.format(format, user, secret);
     }
 
-    public boolean check_code(String secret,String code,long timeMsec) {
+    /**
+     * 验证6位验证码
+     *
+     * @param secret
+     * @param code
+     * @param timeMsec
+     * @return
+     */
+    public boolean check_code(String secret, String code, long timeMsec) {
         Base32 codec = new Base32();
         byte[] decodedKey = codec.decode(secret);
         // convert unix msec time into a 30 second "window"
@@ -93,6 +103,13 @@ public class GoogleAuthenticator {
         return false;
     }
 
+    /**
+     * 生成验证码
+     *
+     * @param key secret 编码后的字节数组
+     * @param t 时间
+     * @return 验证码
+     */
     private static String verify_code(byte[] key, long t) throws NoSuchAlgorithmException, InvalidKeyException {
         byte[] data = new byte[8];
         long value = t;
